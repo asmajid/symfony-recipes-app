@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes ingrédients
+{% endblock %}
+
+{% block body %}
+	{% block header %}
+		{% include 'partials/header.html.twig' %}
+	{% endblock %}
+	<div class="container-ingredient">
+		{% if ingredients | length > 0 %}
+
+			<h1>Mes ingrédients</h1>
+			<span class="count">
+				Il y a
+				<strong>{{ ingredients.getTotalItemCount }}</strong>
+				ingrédients au total
+			</span>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nom</th>
+						<th>Prix</th>
+						<th>Date de création</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for ingredient in ingredients %}
+						<tr>
+							<td>{{ ingredient.getId }}</td>
+							<td>{{ ingredient.getName }}</td>
+							<td>{{ ingredient.getPrice }}</td>
+							<td>{{ ingredient.getCreatedAt|date('d/m/y') }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="navigation">
+				{{ knp_pagination_render(ingredients) }}
+			</div>
+		{% else %}
+			<h4>Il n'y a pas d'ingrédients</h4>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'ingrédient
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('css/form.css') }}">
+{% endblock %}
+
+{% block body %}
+	{% block header %}
+		{% include 'partials/header.html.twig' %}
+	{% endblock %}
+
+	<div class="container-form">
+		<h1>Création d'un ingrédient</h1>
+
+		{% for message in app.flashes('success') %}
+			<div class="flash-success">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col">
+				{{ form_row(form.name) }}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				{{ form_row(form.price) }}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				{{ form_widget(form.submit, {'attr': {'class': 'custom-submit-class'}}) }}
+			</div>
+		</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

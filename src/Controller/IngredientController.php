@@ -45,6 +45,12 @@ class IngredientController extends AbstractController
         ]);
     }
 
+    /**
+     * This function show a form which create an ingredient
+     *
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/ingredient/nouveau', name: 'app_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {

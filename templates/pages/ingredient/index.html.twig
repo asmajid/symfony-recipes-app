@@ -11,11 +11,18 @@
 		{% if ingredients | length > 0 %}
 
 			<h1>Mes ingrédients</h1>
-			<span class="count">
-				Il y a
-				<strong>{{ ingredients.getTotalItemCount }}</strong>
-				ingrédients au total
-			</span>
+			<div class="ingredient-actions">
+				<a href="{{path('app_new')}}" class="create-ingredient-link">
+
+					Créer ingrédient >>
+				</a>
+				<span class="count">
+					Il y a
+					<strong>{{ ingredients.getTotalItemCount }}</strong>
+					ingrédients au total
+				</span>
+			</div>
+
 			<table class="table">
 				<thead>
 					<tr>

@@ -333,3 +333,28 @@ span {
     margin-right: 10px;
 }
 
+.ingredient-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.create-ingredient-link {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #ff6347;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.create-ingredient-link:hover {
+    background-color: #e74c3c;
+}
+

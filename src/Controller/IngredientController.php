@@ -65,13 +65,43 @@ class IngredientController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Votre ingrédient ' . $ingredient->getName() . 'a été créé avec succès !'
+                'Votre ingrédient ' . $ingredient->getName() . 'a été modifié avec succès !'
             );
             return $this->redirectToRoute('app_ingredient');
         }
 
         return $this->render('pages/ingredient/new.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+    /**
+     * This controller edits the ingredient
+     * 
+     * @param Request $request
+     * @param Ingredient $ingredient
+     * @return Response
+     */
+    #[Route('/ingredient/edition/{id}', name: 'app_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Ingredient $ingredient): Response
+    {
+        $form = $this->createForm(IngredientType::class, $ingredient);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $ingredient = $form->getData();
+
+            $this->em->persist($ingredient);
+            $this->em->flush();
+
+            $this->addFlash(
+                'success',
+                'Votre ingrédient ' . $ingredient->getName() . 'a été modifié avec succès !'
+            );
+            return $this->redirectToRoute('app_ingredient');
+        }
+
+        return $this->render('pages/ingredient/edit.html.twig', [
+            'form' => $form->createView(),
+            'ingredient' => $ingredient
         ]);
     }
 }

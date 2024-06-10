@@ -41,9 +41,7 @@ class IngredientType extends AbstractType
                     new LessThan(200)
                 ]
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Créer mon ingrédient'
-            ]);
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

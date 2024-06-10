@@ -51,7 +51,9 @@
 								<a href="{{ path('app_edit', { 'id': ingredient.id }) }}" class="action-link edit">Modifier</a>
 
 
-								<a href="#" class="action-link delete">Supprimer</a>
+								<a href="{{ path('app_delete', { 'id': ingredient.id }) }}" class="action-link delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet ingrédient ?');">Supprimer</a>
+
+
 							</td>
 						</tr>
 					</td>

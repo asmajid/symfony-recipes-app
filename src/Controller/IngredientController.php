@@ -7,6 +7,7 @@ use App\Form\IngredientType;
 use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -103,5 +104,24 @@ class IngredientController extends AbstractController
             'form' => $form->createView(),
             'ingredient' => $ingredient
         ]);
+    }
+
+    /**
+     * This controller delete the ingredient
+     * 
+     * @param Ingredient $ingredient
+     * @return Response
+     */
+    #[Route('/ingredient/delete/{id}', name: 'app_delete', methods: ['GET'])]
+    function delete(Ingredient $ingredient): Response
+    {
+        $this->em->remove($ingredient);
+        $this->em->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre ingrédient a été supprimé avec succès !'
+        );
+        return $this->redirectToRoute('app_ingredient');
     }
 }

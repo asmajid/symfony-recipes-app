@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes ingrédients
+{% endblock %}
+
+{% block body %}
+	{% block header %}
+		{% include 'partials/header.html.twig' %}
+	{% endblock %}
+	<div class="container-ingredient">
+		{% if recipes | length > 0 %}
+
+
+			<h1>Mes recettes</h1>
+			<div class="ingredient-actions">
+				<a href="" class="create-ingredient-link">
+
+					Créer recipe >>
+				</a>
+				{% for message in app.flashes('success') %}
+					<div class="flash-success">
+						{{ message }}
+					</div>
+				{% endfor %}
+
+				<span class="count">
+					Il y a
+					<strong>{{ recipes.getTotalItemCount }}</strong>
+
+					recettes au total
+				</span>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Numéro</th>
+						<th>Nom</th>
+						<th>Prix</th>
+						<th>Difficulté</th>
+						<th>Date de création</th>
+						<th>Actions</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for recipe in recipes %}
+						<tr>
+							<td>{{ recipe.id }}</td>
+							<td>{{ recipe.name }}</td>
+							<td>
+								{% if recipe.price is null %}
+									<span class="not-provided">Non renseigné</span>
+								{% else %}
+									{{ recipe.price }}
+								{% endif %}
+							</td>
+							<td>
+								{% if recipe.difficulty is null %}
+									<span class="not-provided">Non renseigné</span>
+								{% else %}
+									{{ recipe.difficulty }}
+								{% endif %}
+							</td>
+
+
+							<td>{{ recipe.createdAt|date('d/m/y') }}</td>
+							<td>
+								<a href="" class="action-link edit">Modifier</a>
+
+
+								<a href="" class="action-link delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet ingrédient ?');">Supprimer</a>
+
+
+							</td>
+						</tr>
+					</td>
+				</tbody>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<div class="navigation">
+	{{ knp_pagination_render(recipes) }}
+</div>{% else %}
+<h4>Il n'y a pas d'ingrédients</h4>{% endif %}</div>{% endblock %}

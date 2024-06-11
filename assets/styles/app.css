@@ -399,3 +399,14 @@ span {
     background-color: #e74c3c;
 }
 
+.not-provided {
+    color: #6c757d;
+    font-size: 11px;
+    font-style: italic;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #e7fea9;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    margin: 0;
+}

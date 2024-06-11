@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -45,5 +46,24 @@ class RecipeController extends AbstractController
         return $this->render('pages/recipe/index.html.twig', [
             'recipes' => $recipes
         ]);
+    }
+
+    /**
+     * This controller delete the ingredient
+     * 
+     * @param Recipe $recipe
+     * @return Response
+     */
+    #[Route('/recipe/delete/{id}', name: 'recipe_delete', methods: ['GET'])]
+    function delete(Recipe $recipe): Response
+    {
+        $this->em->remove($recipe);
+        $this->em->flush();
+
+        $this->addFlash(
+            'success',
+            'Votre recette ' . $recipe->getName() . ' a été supprimé avec succès !'
+        );
+        return $this->redirectToRoute('app_recipe');
     }
 }

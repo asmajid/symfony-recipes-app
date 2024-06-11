@@ -15,7 +15,7 @@
 			<div class="ingredient-actions">
 				<a href="" class="create-ingredient-link">
 
-					Créer recipe >>
+					Créer recette >>
 				</a>
 				{% for message in app.flashes('success') %}
 					<div class="flash-success">
@@ -69,7 +69,7 @@
 								<a href="" class="action-link edit">Modifier</a>
 
 
-								<a href="" class="action-link delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet ingrédient ?');">Supprimer</a>
+								<a href="{{ path('recipe_delete', {'id': recipe.id})}}" class="action-link delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cete recette ?');">Supprimer</a>
 
 
 							</td>
